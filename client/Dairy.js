@@ -32,8 +32,6 @@ const foodOfMeals = () => {
 dairies = [];
 
 enterToJson = (obj) => {
-  //  const params = new URLSearchParams(window.location.search);
-  //  const id = params.get("userId");
   const xhr = new XMLHttpRequest();
   xhr.open("GET", `http://localhost:3000/users/${id}`);
   xhr.send();
@@ -66,7 +64,5 @@ function puch() {
 }
 
 const mydairy = () => {
-  // const params = new URLSearchParams(window.location.search);
-  // const id = params.get("userId");
   window.location.href = `MyDairy.html?userId=${id}`;
 };
