@@ -1,8 +1,7 @@
 const express = require("express");
 const fs = require("fs/promises");
-// const fsPromises = require('fs').promises;
 const router = express.Router();
-//fsPromises.readFile('../users.json', 'utf8');
+
 const {
   getAllMeeting,
   getMeetingbyId,
@@ -31,7 +30,7 @@ router.post("/:id", async (req, res) => {
   }
 });
 
-// GET /users/:id
+
 router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
   let meeting;
@@ -44,8 +43,7 @@ router.get("/:id", async (req, res, next) => {
   res.send(meeting);
 });
 
-//by filter
-//????
+
 router.get("/:search", async (req, res, next) => {
   const search = req.params.id;
   let user;
