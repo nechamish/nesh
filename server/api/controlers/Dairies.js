@@ -47,8 +47,9 @@ router.delete("/:id", async (req, res) => {
 });
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { user } = req.body;
-  const updatedDairies = await updeteDairiesById(id, user);
+  const { dairies } = req.body;
+  const data={dairies};
+  const updatedDairies = await updeteDairiesById(id, data);
   res.send(updatedDairies);
 });
 

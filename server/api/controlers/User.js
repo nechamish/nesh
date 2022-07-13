@@ -101,7 +101,7 @@ router.put("/:id", async (req, res) => {
       email,
       height,
       weight,
-      managerDaily,
+      dairies,
     } = req.body;
     const data = {
       firstName,
@@ -111,7 +111,7 @@ router.put("/:id", async (req, res) => {
       email,
       height,
       weight,
-      managerDaily,
+      dairies,
     };
     const created = await updateUser(id, data);
     res.send(created);
