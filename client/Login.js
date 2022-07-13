@@ -1,23 +1,18 @@
 function Enter() {
-  var mail = document.getElementById("mail").value;
+  var id = document.getElementById("id").value;
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://localhost:3000/Login");
+  xhr.open("GET", `http://localhost:3000/users/${id}`); //get from server
   xhr.send();
   xhr.onload = function () {
     if (xhr.status != 200) {
       alert(`Error ${xhr.status}: ${xhr.statusText}`);
     } else {
-      let users = JSON.parse(xhr.responseText);
-      if (users[0].email === mail) {
-        localStorage.setItem("U", JSON.stringify(users));
+      let user = JSON.parse(xhr.responseText);
+      if (user.id === "123456789") {
+        // localStorage.setItem("U", JSON.stringify(users));
         window.location.href = "Manager.html";
       } else {
-        var CurentUser = users.find((u) => u.email === mail);
-        if (CurentUser != null) {
-          localStorage.setItem("U", JSON.stringify(CurentUser));
-          // window.location.href = "User.html";
-          window.location.href = `User.html?userId=${CurentUser.id}`;
-        }
+        window.location.href = `User.html?userId=${user.id}`;
       }
     }
   };

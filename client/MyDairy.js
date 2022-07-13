@@ -2,10 +2,8 @@ let params = new URLSearchParams(window.location.search);
 let id = params.get("userId");
 
 const onLoad = () => {
-  // const params = new URLSearchParams(window.location.search);
-  // const id = params.get("userId");
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", `http://localhost:3000/User/${id}`);
+  xhr.open("GET", `http://localhost:3000/users/${id}`);//server
   xhr.send();
   xhr.onload = () => {
     if (xhr.status != 200) {
@@ -43,7 +41,5 @@ const onLoad = () => {
 };
 
 newday = () => {
-  // const params = new URLSearchParams(window.location.search);
-  // const id = params.get("userId");
   window.location.href = `Dairy.html?userId=${id}`;
 };

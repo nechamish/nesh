@@ -66,7 +66,5 @@ enterToJson = (obj) => {
 // }
 
 const mydairy = () => {
-  // const params = new URLSearchParams(window.location.search);
-  // const id = params.get("userId");
   window.location.href = `MyDairy.html?userId=${id}`;
 };
