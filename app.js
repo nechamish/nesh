@@ -24,7 +24,8 @@ app.use("/meeting/:id", MeetingRouter);
 app.use("/dairies/:id", DailyRouter);
 app.use("/dairies", DailyRouter);
 
-app.listen(port, () => console.log(`server is runing on port ${port}`));
+app.listen(process.env.PORT || 3000, function () {
+    console.log("SERVER STARTED PORT: 3000");})
 
 
 
