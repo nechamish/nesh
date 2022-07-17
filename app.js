@@ -5,10 +5,10 @@ const swaggerUi = require("swagger-ui-express"),
 swaggerDocument = require("../server/swagger.json");
 
 
-const db = require("./DB/mongoose");
+// const db = require("./DB/mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
-db.connect();
+// db.connect();
 const port=3000;
 const UserRouter = require("./api/controlers/User");
 const MeetingRouter = require("./api/controlers/Meeting")
