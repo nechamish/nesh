@@ -1,7 +1,6 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
-const { CONNECTION_STRING } = process.env;
-const connectionString = "https://localhost:3000";
+const connectionString = "mongodb://localhost:27017/test";
 class dataBase {
   constructor() {}
   async connect() {
@@ -11,7 +10,7 @@ class dataBase {
     });
 
     let connected = await client.connect();
-    this.db = connected.db(CONNECTION_STRING);
+    this.db = connected.db();
 
     console.log("DB Connected!");
   }
@@ -21,3 +20,7 @@ class dataBase {
 }
 
 module.exports = new dataBase();
+
+
+
+

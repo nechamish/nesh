@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 require('dotenv').config();
-const {CONNECTION_STRING} = process.env;
+const CONNECTION_STRING = "mongodb://localhost:27017/test";
 
 class MongooseDB {
   constructor() {
