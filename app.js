@@ -5,13 +5,14 @@ const swaggerUi = require("swagger-ui-express"),
 swaggerDocument = require("../server/swagger.json");
 
 
-const db = require("./db/MongooseDB.js");
-const dotenv = require("dotenv");
-dotenv.config();
-db.connect();
+// const db = require("./db/MongooseDB.js");
+// const dotenv = require("dotenv");
+// dotenv.config();
+// db.connect();
 
-const dbc = require("./db/database.js");
-dbc.connect();
+
+// const dbc = require("./db/database.js");
+// dbc.connect();
 
 const port=3000;
 const UserRouter = require("./api/controlers/User");
