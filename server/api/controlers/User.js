@@ -13,27 +13,7 @@ const {
 router.post("/", async (req, res) => {
   try {
     if (req.body) {
-      const {
-        firstName,
-        lastName,
-        address,
-        phone,
-        email,
-        height,
-        weight,
-        managerDaily,
-      } = req.body;
-      const data = {
-        firstName,
-        lastName,
-        address,
-        phone,
-        email,
-        height,
-        weight,
-        managerDaily,
-      };
-      const created = await addUser(data);
+      const created = await addUser(req.body);
       res.send(created);
     }
   } catch (err) {

@@ -3,16 +3,15 @@ let id = params.get("userId");
 
 const onLoad = () => {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", `http://localhost:3000/users/${id}`);//server
+  xhr.open("GET", `http://localhost:3000/dairies/${id}`);//server
   xhr.send();
   xhr.onload = () => {
     if (xhr.status != 200) {
       alert(`Error ${xhr.status}: ${xhr.statusText}`);
     } else {
       let table = "";
-      user = JSON.parse(xhr.responseText);
-      dairies = user.dairies;
-      user.dairies.forEach((element) => {
+      dairies = JSON.parse(xhr.responseText);
+      dairies.forEach((element) => {
         table += `
                 <tr>
                     <th class="td">${"Date: "}</th>

@@ -1,6 +1,7 @@
 const fs = require("fs/promises");
 const uuid = require("uuid");
 const uuidv4 = uuid.v4;
+const userModel=require('../../model/user.Schema');
 
 async function getUsers() {
   console.log("ghj");
@@ -11,7 +12,7 @@ async function getUsers() {
 
 
 async function getAllJson() {
-  const dataFile = await fs.readFile("api/data/User.json");
+  const dataFile = await fs.readFile("api/data/.json");
   let data = JSON.parse(dataFile);
   console.log(data);
   return data;
@@ -29,21 +30,8 @@ async function getUserById(id) {
 
 
 async function addUser(user) {
-  if (!user.firstName || !user.lastName) {
-    throw new Error("user must include your full name");
-  }
-  const users = await getUsers();
-  user.id = users[users.length - 1].id + 1;
-  const data = (await getAllJson()) || [];
-  const exists = data.users.find(
-    (u) => u.phone === user.phone && u.email === user.email
-  );
-  if (exists) {
-    throw new Error("user with email and phone already exists");
-  }
-  data.users.push(user);
-  await updateJson(data);
-  return user;
+ const userAdd = await new userModel(user);
+ return await userAdd.save();
 }
 
 async function findByIdAndDelete(id) {

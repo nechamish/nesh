@@ -31,38 +31,68 @@ const foodOfMeals = () => {
 
 dairies = [];
 
+
 enterToJson = (obj) => {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", `http://localhost:3000/users/${id}`);
+  xhr.open("POST", `http://localhost:3000/dairies/${id}`);
   xhr.send();
   xhr.onload = () => {
     if (xhr.status != 200) {
       alert(`Error ${xhr.status}: ${xhr.statusText}`);
-    } else {
-      user = JSON.parse(xhr.responseText);
-      dairies = user.dairies;
-      dairies.push(obj);
-      puch();
+    } else{
+      console.log("Success");
     }
-  };
-};
+  }};
 
-function puch() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("userId");
-  fetch(`http://localhost:3000/users/${id}`, {
-    method: `PATCH`,
-    body: JSON.stringify({
-      dairies: dairies,
-    }),
-    headers: { "Content-type": `application/json; charset=UTF-8` },
-  }).then((response) => {
-    if (response.status !== 200 || response.status === undefined) {
-      alert(response.message);
-    }
-  });
-}
+
 
 const mydairy = () => {
   window.location.href = `MyDairy.html?userId=${id}`;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// enterToJson = (obj) => {
+//   const xhr = new XMLHttpRequest();
+//   xhr.open("GET", `http://localhost:3000/users/${id}`);
+//   xhr.send();
+//   xhr.onload = () => {
+//     if (xhr.status != 200) {
+//       alert(`Error ${xhr.status}: ${xhr.statusText}`);
+//     } else {
+//       user = JSON.parse(xhr.responseText);
+//       dairies = user.dairies;
+//       dairies.push(obj);
+//       puch();
+//     }
+//   };
+// };
+
+// function puch() {
+//   const params = new URLSearchParams(window.location.search);
+//   const id = params.get("userId");
+//   fetch(`http://localhost:3000/users/${id}`, {
+//     method: `PATCH`,
+//     body: JSON.stringify({
+//       dairies: dairies,
+//     }),
+//     headers: { "Content-type": `application/json; charset=UTF-8` },
+//   }).then((response) => {
+//     if (response.status !== 200 || response.status === undefined) {
+//       alert(response.message);
+//     }
+//   });
+// };
+
