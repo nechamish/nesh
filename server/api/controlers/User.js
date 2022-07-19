@@ -21,6 +21,18 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+router.put("/:id", async (req, res) => {
+  if (req.body) {
+    const { id } = req.params;
+
+    const created = await updateUser(id, req.body);
+    res.send(created);
+  }
+});
+
+
+
 // GET /users/:id
 router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
@@ -70,31 +82,6 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
-  if (req.body) {
-    const { id } = req.params;
-    const {
-      firstName,
-      lastName,
-      address,
-      phone,
-      email,
-      height,
-      weight,
-      managerDaily,
-    } = req.body;
-    const data = {
-      firstName,
-      lastName,
-      address,
-      phone,
-      email,
-      height,
-      weight,
-      managerDaily,
-    };
-    const created = await updateUser(id, data);
-    res.send(created);
-  }
-});
 module.exports = router;
+
+

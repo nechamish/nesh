@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// const meeting = require("./meeting.Schema");
+const meeting = require("./meeting.Schema");
 const dairies = require("./Dairies.Schema");
 const Userschema = new Schema({
-  id: { type: String, required: true },
+  // id: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   address: [
@@ -16,25 +16,22 @@ const Userschema = new Schema({
   phone: { type: String, required: true },
   email: { type: String, required: true },
   hight: { type: Number, required: true },
-  // weight: ({startWeight:{type:number,required: true},
-  //          meeting:meetingsSchema,
-  //          dairies:dairiesSchema,
-  // })
+
   weight: [
     {
       startWeight: { type: Number },
-      // meeting: [
-      //   {
-      //     type: [meeting.meetingsSchema],
-      //   },
-      // ],
+      meeting: [
+        {
+          type: [meeting.meetingsSchema],
+        },
+      ],
     },
   ],
-  diary: [
+  dairies: [
     {
       type: [dairies.Dairyschema],
     },
   ],
 });
-const UsersModel = mongoose.model("Users", Userschema);
+const UsersModel = mongoose.model("User", Userschema);
 module.exports = UsersModel;

@@ -24,11 +24,13 @@ router.get("/:id", async (req, res, next) => {
   res.send(user);
 });
 router.post("/:id", async (req, res, next) => {
-  const { dairies } = req.body;
+  console.log(req.body);
+  const  dairies  = req.body;
+  const id = req.params.id;
     let Daily;
     try {
         Daily =  await addDairies(
-          dairies
+         id, dairies
         );
     } catch (err) {
         console.error(err)
@@ -46,8 +48,9 @@ router.delete("/:id", async (req, res) => {
   }
 });
 router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const { user } = req.body;
+  const  id  = req.params;
+  const  user  = req.body;
+  console.log(user);
   const updatedDairies = await updeteDairiesById(id, user);
   res.send(updatedDairies);
 });
