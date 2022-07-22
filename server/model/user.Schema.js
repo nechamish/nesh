@@ -3,7 +3,6 @@ const { Schema } = mongoose;
 const meeting = require("./meeting.Schema");
 const dairies = require("./Dairies.Schema");
 const Userschema = new Schema({
-  // id: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   address: [

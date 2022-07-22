@@ -5,6 +5,35 @@ const uuidv4 = uuid.v4;
 const userModel = require("../../model/user.Schema");
 const meetingModel = require("../../model/meeting.Schema");
 
+
+
+//מיטינג להמשיך
+// const addMeeting = async (weights, meeting) => {
+//   ``;
+//   const insertedMeeting = await meeting.save();
+//   const users = await userModel.find();
+//   console.log(users[1]._id);
+//   console.log(users);
+//   let i = 0;
+//   weights.forEach((weight) => {
+//     users[i].details.meetings.push({ id: insertedMeeting._id, weight: weight });
+//     console.log(users[i].details.meetings);
+//     updateUser(users[i].details, users[i].id);
+//     i++;
+//   });
+//   return insertedMeeting;
+// };
+// const updateUser = async (details, id) => {
+//   await userModel.updateOne(
+//     { id: id },
+//     {
+//       $set: {
+//         details: details,
+//       },
+//     }
+//   );
+// };
+
 async function getAllMeeting() {
   const users = await userModel.find();
   console.log(users[0].weight)
@@ -30,13 +59,6 @@ async function deleteMeetingById(id) {
   return "sucsess!";
 }
 
-const updateUser = async (id, user) => {
-   const updateUser = await userModel.updateOne(
-    { _id: ObjectId(id) },
-    user
-  );
-  return user;
-};
 
 
 async function addMeeting(id,meet) {
@@ -59,10 +81,42 @@ async function addMeeting(id, data) {
 }
 
 
+async function updateMeeting(id, meeting){
+  const data = await getAllJson();
+  const index = await data.users.findIndex((u) => u.id === (id));
+  Object.assign(meeting, data[index].weight.meeting[0]);
+  await updateJson(data);
+  return data[index].weight.meeting;
+};
 
 
-const updateJson = async (user) =>
-  fs.writeFile("api/data/User.json", JSON.stringify(user));
+  module.exports = {
+    getAllMeeting,
+    getMeetingbyId,
+    deleteMeetingById,
+    addMeeting,
+    updateMeeting,
+  };
+
+
+//פונקציות של הגייסון
+// async function deleteMeetingById(id){
+// const data=await getUsers();
+//  const index = await data.findIndex((u) => u.id === (id));
+//  data[index].weight.meeting.splice(0, 3);
+//   try {
+//     await updateJson(data);
+//     return "success!";
+//   } catch (err) {
+//     console.error(err);
+//     return "faild";
+//   }
+
+// }
+
+
+
+
 
 // async function getAllMeeting(){
 //     const data = await getUsers(); 
@@ -82,33 +136,6 @@ const updateJson = async (user) =>
 
 
 
-async function deleteMeetingById(id){
-const data=await getUsers();
- const index = await data.findIndex((u) => u.id === (id));
- data[index].weight.meeting.splice(0, 3);
-  try {
-    await updateJson(data);
-    return "success!";
-  } catch (err) {
-    console.error(err);
-    return "faild";
-  }
-
-}
-
-async function updateMeeting(id, meeting){
-  const data = await getAllJson();
-  const index = await data.users.findIndex((u) => u.id === (id));
-  Object.assign(meeting, data[index].weight.meeting[0]);
-  await updateJson(data);
-  return data[index].weight.meeting;
-};
 
 
-  module.exports = {
-  getAllMeeting,
-  getMeetingbyId,
-  deleteMeetingById,
-  addMeeting,
-  updateMeeting,
-};
+
