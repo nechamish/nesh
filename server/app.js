@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const swaggerUi = require("swagger-ui-express"),
 swaggerDocument = require("../server/swagger.json");
+const checkJwt = require("../server/api/middleware/middleware");
 
 
 const db = require("./db/MongooseDB.js");
@@ -31,6 +32,8 @@ app.use("/dairies", DailyRouter);
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("SERVER STARTED PORT: 3000");})
+
+
 
 
 
